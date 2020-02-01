@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DrinksGo.Data.Interfaces;
+using DrinksGo.Data.Mocks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +18,8 @@ namespace DrinksGo
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IDrinkRepository, MockDrinkRepository>();
+            services.AddTransient<ICategoryRepository, MockCategoryRepository>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
 
         }
